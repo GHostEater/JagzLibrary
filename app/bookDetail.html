@@ -1,0 +1,28 @@
+<div> 
+
+<div class="row btn-back">
+  <a href="#/books" class="btn btn-info">Back to Books</a>
+</div>
+<div class="row content">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <img ng-src='img/books/{{book.book_img}}' class='img-responsive' align="middle"></p>
+  </div>
+  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{book.title}}</h3>
+      </div>
+      <div class="panel-body">
+        <h5><em>Author:</em> <a href="#/authorDetail/{{book.author_id}}">{{book.author}}</a></h5>
+        <h5><em>Publisher:</em> {{book.publisher}}</h5>
+        <h5><em>Year Published:</em> {{book.published}}</h5><br>
+        <h5><em>About The Book:</em></h5>
+        <div class="well">
+          <p ng-bind-html="book.book_info"></p>
+        </div>
+      </div>
+    </div>
+  </div>		
+</div>
+
+</div>

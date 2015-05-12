@@ -1,0 +1,27 @@
+<div> 
+  <nav class="row navi">
+    <ul class="nav nav-tabs">
+    	<li class="active"><a href="#/books">Books</a></li>
+    	<li><a href="#/authors">Authors</a></li>
+    </ul>
+  </nav>
+<div class="row">
+  	<div class='col-xs-12 col-sm-6 col-md-4 col-lg-3 content list-item' ng-animate="'animate'" ng-repeat="book in books | orderBy:book.title | filter:query">
+  		<div class="">
+        	<a href="#/bookDetail/{{book.book_id}}">
+        	<div class="col-xs-12">
+        	<img ng-src='img/books/{{book.book_img}}' width='217' height='346'>
+          </div>
+          
+          <div class="col-xs-12">
+        	<h4>{{book.title}}</h4>
+        	</a>
+        	<p><em>Author:</em> <a href="#/authorDetail/{{book.author_id}}">{{book.author}}</a><br>
+        	   <em>Publisher:</em> {{book.publisher}}<br>
+        	   <em>Year Published:</em> {{book.published}}</p>	
+        </div>	
+    	</div>
+    </div>
+</div>
+</div>
+</div>

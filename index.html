@@ -1,0 +1,128 @@
+<!doctype html>
+<html ng-app="library">
+<head>
+
+<meta charset="utf-8">
+<title>Jagz Library</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.js"></script>
+<script src="js/angular-sanitize.min.js"></script>
+<script src="js/lodash.min.js"></script>
+<script src="js/angular-file-upload-all.js"></script>
+
+<script src="app/app.js"></script>
+<script src="app/BookCtrl.js"></script>
+<script src="app/AuthorCtrl.js"></script>
+<script src="app/BookDetailCtrl.js"></script>
+<script src="app/AuthorDetailCtrl.js"></script>
+
+<script src="app/AddBookCtrl.js"></script>
+<script src="app/AddAuthorCtrl.js"></script>
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/respond.min.js"></script>
+
+<script src="js/tinymce/tinymce.min.js"></script>
+<script src="js/tinyconfig.js"></script>
+<script src="js/tinymceBind.js"></script>
+</head>
+
+<body>
+<div class="container overall">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			    </button>
+			    <a class="navbar-brand" href="#/books"><img src="img/logo.png" width="133" height="46"></a>
+			</div><!-- /.navbar-header -->
+		  
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left" role="search">
+				  <div class="form-group form-inline">
+            <input type="text" class="form-control" placeholder="Search" ng-model="query"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            &nbsp&nbsp&nbsp&nbsp
+            <a class="btn btn-danger" data-toggle="modal" data-target=".addBook">Add A Book</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target=".addAuthor">Add An Author</a>
+				  </div>
+        </form>
+      </div><!--/.navbar-collapse-->
+		</div><!-- /.container-fluid -->
+	</nav><!-- /.navbar -->
+
+<div class="container-fluid mainBody">
+  <div ng-view>
+
+  </div>
+</div>
+<footer><img src="img/sponsor.png" width="135" height="59"><br><br>&copy 2015 All Rights Reserved</footer>
+</div>
+
+<script src="js/modal.js"></script>
+<div class="modal fade addBook" ng-controller="AddBookCtrl">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add A Book To The Library</h4>
+            </div>
+          <div class="modal-body">
+            <form id="addBook">
+            <p ng-show="addBookSuccess" class="bg-success">Book Added!!!</p>
+              <div class="form-group form-inline">
+                <input type="text" class="form-control" placeholder="Title" ng-model="title" required>
+
+                <select class="form-control" ng-model="author_id" required>
+                  <option>Select An Author</option>
+                  <option ng-repeat="author in authors | orderBy:author.name" value="{{author.author_id}}">{{author.name}}</option>
+                </select>
+
+                <input type="text" class="form-control" placeholder="Publisher" ng-model="publisher" required>
+              </div>
+              <div class="form-group form-inline">
+                <input type="text" class="form-control" placeholder="Year Published" ng-model="published" required>
+                <input type="file" class="form-control" ng-file-select ng-model="file" required>
+              </div>
+              <textarea ui-tinymce class="form-control" ng-model="book_info" required></textarea>
+              <button type="submit" class="btn btn-primary" ng-click="uploadBook()">Submit</button>
+            </form>
+          </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade addAuthor" ng-controller="AddAuthorCtrl">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add An Author</h4>
+            </div>
+          <div class="modal-body">
+            <form id="addAuthor">
+              <p ng-show="addAuthorSuccess" class="bg-success">Author Added!!!</p>
+              <div class="form-group form-inline">
+                <input type="text" class="form-control" placeholder="Name" ng-model="name">
+
+                <input type="text" class="form-control" placeholder="Date of Birth(dd-MMM-YYYY)" ng-model="date_birth">
+              </div>
+              <div class="form-group form-inline">
+                <input type="file" class="form-control" ng-file-select ng-model="file">
+              </div>
+              <textarea ui-tinymce class="form-control" ng-model="bio"></textarea>
+              <button type="submit" class="btn btn-primary" ng-click="uploadAuthor()">Submit</button>
+            </form>
+          </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</body>
+</html>
